@@ -18,7 +18,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="log-w3">
     <div class="w3layouts-main">
         <h2>Sign In Now</h2>
-        <form action="login_check.php" method="post">
+        <form action="login_check1.php" method="post">
             <input type="text" class="ggg" name="username" placeholder="USERNAME" required="">
             <input type="password" class="ggg" name="password" placeholder="PASSWORD" required="">
             <input type="text" class="ggg" pattern="^[\d]{4}$" placeholder="验证码" name="code" id="code">

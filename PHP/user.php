@@ -35,13 +35,29 @@ if($_SESSION["mail"]=="登录"){
                 <!-- <img src="../images/xiaoxiao1.ico"> -->
             </li>
         </ul>
-        <ul>
-            <li class="touxiang"><a href="message.php">头像</a></li>
-            <?php
+<?php
             require_once "../function.php";
             require_once  '../Connect2.1/qqConnectAPI.php';
 
             ?>
+        <?php 
+include_once("opensql.php");
+$mail=$_SESSION["mail"];
+$sqlq="select * from tb_hear where h_user in (select us_id from tb_user  where us_name='$mail') ";
+$xianq=$mysqldb->select($sqlq);
+$rq=mysql_fetch_array($xianq);
+?>
+
+
+        <ul>
+            <li class="touxiang"><a href="message.php"><?php
+            if(empty($rq)){
+                echo "<img style='width: 62px;height: 62px;display: block;border-radius: 50%;' src='../images/5ad88136557ec.png'>";
+            }else{
+            echo "<img style='width: 62px;height: 62px;display: block;border-radius: 50%;' src='../images/$rq[0]'>";
+            }
+                       ?></a></li>
+            
             <?php
 
             /*      if(!isset($_COOKIE['qq_accesstoken'])|| !isset($_COOKIE["qq_openid"])){

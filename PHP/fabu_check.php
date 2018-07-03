@@ -1,8 +1,8 @@
 <meta charset="UTF-8">
 
-
 <?php
 session_start();
+date_default_timezone_set('prc');
 include_once("opensql.php");
 $fenlei=$_POST['fenlei'];
 $title=$_POST['title'];

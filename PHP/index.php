@@ -84,34 +84,32 @@ mysql_query($sql);
     </li>
 </ul>
 
-
-
-    <ul>
-        <li class="touxiang"><a  href="message.php">头像</a></li>
 <?php
         require_once "../function.php";
         require_once  '../Connect2.1/qqConnectAPI.php';
 
 ?>
-        <?php
+<?php 
+include_once("opensql.php");
+if(!empty($_SESSION["mail"])&&$_SESSION["mail"]!='登录'){
+$mail=$_SESSION["mail"];
+$sqlq="select * from tb_hear where h_user in (select us_id from tb_user  where us_name='$mail') ";
+$xianq=$mysqldb->select($sqlq);
+$rq=mysql_fetch_array($xianq);
+}
+
+?>
 
 
-  /*      if(!isset($_COOKIE['qq_accesstoken'])|| !isset($_COOKIE["qq_openid"])){
-            echo '<li ><a href="login.php">登录</a></li>';
-            echo  '<li><a href="login.php">注册</a></li>';
-        }
-            else {
-           echo  '<li ><a href="login.php">haha</a></li>';
-           echo  '<li><a href="../qq_loginout.php">退出</a></li>';
-        }*/
+    <ul>
+        <li class="touxiang"><a  href="message.php"><?php
+            if(empty($rq)){
+                echo "<img style='width: 62px;height: 62px;display: block;border-radius: 50%;' src='../images/5ad88136557ec.png'>";
+            }else{
+            echo "<img style='width: 62px;height: 62px;display: block;border-radius: 50%;' src='../images/$rq[0]'>";
+            }
+                       ?></a></li>
 
-/*     $qc=new QC($_COOKIE['qq_accesstoken'],$_COOKIE['qq_openid']);
-        $userinfo=$qc->get_user_info;*/
-
-
-
-
-        ?>
         <li ><a  href="login.php" ><?php  if(empty($_SESSION["mail"])){  $_SESSION['mail']="登录"; echo $_SESSION['mail'];}else{echo  $_SESSION['mail'];}   ?></a></li>
         <li><?php  if(($_SESSION['mail'])=="登录"){ echo "<a href='login.php'>注册</a>";}else{ echo '<a href="ssion.php">退出</a>';}    ?></li>
 
@@ -135,7 +133,13 @@ mysql_query($sql);
             </li>
         </ul>
         <ul>
-            <li class="touxiang"><a href="message.php">头像</a></li>
+            <li class="touxiang"><a href="message.php"><?php
+            if(empty($rq)){
+                echo "<img style='width: 62px;height: 62px;display: block;border-radius: 50%;' src='../images/5ad88136557ec.png'>";
+            }else{
+            echo "<img style='width: 62px;height: 62px;display: block;border-radius: 50%;' src='../images/$rq[0]'>";
+            }
+                       ?></a></li>
             <li ><a  href="login.php"><?php  if(empty($_SESSION["mail"])){  $_SESSION['mail']="登录"; echo $_SESSION['mail'];}else{echo  $_SESSION['mail'];}   ?></a></li>
             <li><?php  if(($_SESSION['mail'])=="登录"){ echo "<a href='login.php'>注册</a>";}else{ echo '<a href="ssion.php">退出</a>';}    ?></li>
             <li><a href="fabu.php">发布</a></li>

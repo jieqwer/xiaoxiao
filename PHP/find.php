@@ -32,10 +32,23 @@ session_start();
                 <!-- <img src="../images/xiaoxiao1.ico"> -->
             </li>
         </ul>
+<?php 
+include_once("opensql.php");
+$mail=$_SESSION["mail"];
+$sqlq="select * from tb_hear where h_user in (select us_id from tb_user  where us_name='$mail') ";
+$xianq=$mysqldb->select($sqlq);
+$rq=mysql_fetch_array($xianq);
+?>
 
 
         <ul>
-            <li class="touxiang"><a href="message.php">头像</a></li>
+            <li class="touxiang"><a href="message.php"><?php
+            if(empty($rq)){
+                echo "<img style='width: 62px;height: 62px;display: block;border-radius: 50%;' src='../images/5ad88136557ec.png'>";
+            }else{
+            echo "<img style='width: 62px;height: 62px;display: block;border-radius: 50%;' src='../images/$rq[0]'>";
+            }
+                       ?></a></li>
             <li ><a  href="login.php"><?php  if(empty($_SESSION["mail"])){  $_SESSION['mail']="登录"; echo $_SESSION['mail'];}else{echo  $_SESSION['mail'];}   ?></a></li>
             <li><?php  if(($_SESSION['mail'])=="登录"){ echo "<a href='login.php'>注册</a>";}else{ echo '<a href="ssion.php">退出</a>';}    ?></li>
             <li><a href="fabu.php">发布</a></li>

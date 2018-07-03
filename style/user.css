@@ -148,7 +148,7 @@ body{
     width: 70%;
     height: 770px;
     margin: 70px auto;
-    border: 1px solid #3ed;
+
 }
 .hh1{
     color: #ff3162;
@@ -213,6 +213,7 @@ body{
     float: left;
     text-align: center;
     line-height: 30px;
+    color: #ff3162;
 }
 .center a span {
     display: block;

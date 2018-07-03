@@ -36,6 +36,7 @@ if(isset($_SESSION['username'])){
     }
     include_once("../php/opensql.php");
     $sql="select * from tb_admin where name='$username' and password='$password'";
+    echo $sql;
     $xian=$mysqldb->select($sql);
    $r=mysql_num_rows($xian);
     if($r>0){

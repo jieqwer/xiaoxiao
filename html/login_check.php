@@ -3,8 +3,7 @@
 $username=$_POST["username"];
 $password=$_POST['password'];
 session_start();
-setcookie("mail",$username,time()+7*24*3600);
-setcookie("password",$password,time()+7*24*3600);
+
 if(isset($_SESSION['username'])){
     echo '<script type="text/javascript">alert("你已登录，请勿重复登录");</script>';
     header('refresh:0;url=index.php');
